@@ -22,7 +22,7 @@
 
 .restaurant-container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
 }
 
@@ -31,7 +31,7 @@
   padding: 5px;
   margin: 5px;
   width: 250px;
-  height: 450px;
+  height: auto;
 }
 
 .restaurant-card:hover {
