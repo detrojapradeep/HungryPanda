@@ -1183,6 +1183,8 @@ const restObj = [
 ];
 
 const RestaurantCard = ({ restData }) => {
+  const { name, cuisines, costForTwo, avgRating } = restData?.info;
+  const { deliveryTime } = restData.info?.sla;
   return (
     <div className="restaurant-card">
       <img
@@ -1193,14 +1195,16 @@ const RestaurantCard = ({ restData }) => {
           restData.info.cloudinaryImageId
         }
       ></img>
-      <h3>{restData.info.name}</h3>
-      <h4>{restData.info.cuisines.join(", ")}</h4>
-      <h4>{restData.info.costForTwo}</h4>
-      <h4>{restData.info.avgRating}</h4>
-      <h4>ETA : {restData.info.sla.deliveryTime} minutes</h4>
+      <h3>{name}</h3>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{avgRating}</h4>
+      <h4>ETA : {deliveryTime} minutes</h4>
     </div>
   );
 };
+
+// IMP while using MAPS : No Keys <<<<<< Indexes as keys <<<<< Unique ids as keys
 
 const Body = () => {
   return (
@@ -1209,20 +1213,9 @@ const Body = () => {
         <h3>This is a Search Bar</h3>
       </div>
       <div className="restaurant-container">
-        <RestaurantCard restData={restObj[0]} />
-        <RestaurantCard restData={restObj[1]} />
-        <RestaurantCard restData={restObj[2]} />
-        <RestaurantCard restData={restObj[3]} />
-        <RestaurantCard restData={restObj[4]} />
-        <RestaurantCard restData={restObj[5]} />
-        <RestaurantCard restData={restObj[6]} />
-        <RestaurantCard restData={restObj[7]} />
-        <RestaurantCard restData={restObj[8]} />
-        <RestaurantCard restData={restObj[9]} />
-        <RestaurantCard restData={restObj[10]} />
-        <RestaurantCard restData={restObj[11]} />
-        <RestaurantCard restData={restObj[12]} />
-        <RestaurantCard restData={restObj[13]} />
+        {restObj.map((restaurant) => (
+          <RestaurantCard key={restaurant.info.id} restData={restaurant} />
+        ))}
       </div>
     </div>
   );
@@ -1233,7 +1226,6 @@ const AppLayout = () => {
     <div className="app">
       <Header />
       <Body />
-      {/* <Footer /> */}
     </div>
   );
 };
