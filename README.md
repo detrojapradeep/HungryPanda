@@ -14,3 +14,8 @@
 - - Links
 - - Contact us
 - - Address
+
+#Export/ Import
+
+#Default Export/ Import - import component from "path"
+#Named Export/ Import - import {component} from "path";
