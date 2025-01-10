@@ -70,10 +70,6 @@
   justify-content: space-between;
 }
 
-/* .shimmer-card-container {
-  
-} */
-
 .shimmer-card {
   background-color: #f0f0f0;
   padding: 7px;
@@ -98,4 +94,9 @@
   height: 20px;
   padding: 0 10px;
   background-color: #d3d3d3;
+}
+
+.login-btn {
+  padding: 10px;
+  cursor: pointer;
 }

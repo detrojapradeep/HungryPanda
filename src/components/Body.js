@@ -21,11 +21,10 @@ const Body = () => {
     );
   };
 
-  if (restList.length === 0) {
-    return <Shimmer />;
-  }
-
-  return (
+  // Conditional Rendering!
+  return restList.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="Body">
       <div className="filter">
         <button
