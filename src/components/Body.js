@@ -6,6 +6,8 @@ import Shimmer from "./Shimmer.js";
 // IMP while using MAPS : No Keys <<<<<< Indexes as keys <<<<< Unique ids as keys
 const Body = () => {
   const [restList, setRestList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRes, setFilteredRes] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -19,6 +21,10 @@ const Body = () => {
       jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    setFilteredRes(
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
   // Conditional Rendering!
@@ -26,24 +32,55 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="Body">
-      <div className="filter">
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = restList
-              .filter((res) => res.info.avgRating > 4)
-              .sort(
-                (a, b) =>
-                  parseFloat(b.info.avgRating) - parseFloat(a.info.avgRating)
+      <div className="filter-container">
+        <div className="search">
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          ></input>
+          <button
+            onClick={() => {
+              // Filter the res cards
+              // Rerender the Body component
+              const searchResList = restList.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText)
               );
-            setRestList(filteredList);
-          }}
-        >
-          Filter Top Rated Restaurants
-        </button>
+              setFilteredRes(searchResList);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="filter">
+          <button
+            className="filter-btn"
+            onClick={() => {
+              const filteredList = restList
+                .filter((res) => res.info.avgRating > 4)
+                .sort(
+                  (a, b) =>
+                    parseFloat(b.info.avgRating) - parseFloat(a.info.avgRating)
+                );
+              setFilteredRes(filteredList);
+            }}
+          >
+            Filter Top Rated Restaurants
+          </button>
+          <button
+            className="clear-filters"
+            onClick={() => {
+              setFilteredRes(restList);
+            }}
+          >
+            Clear
+          </button>
+        </div>
       </div>
       <div className="restaurant-container">
-        {restList.map((restaurant) => (
+        {filteredRes.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} restData={restaurant} />
         ))}
       </div>

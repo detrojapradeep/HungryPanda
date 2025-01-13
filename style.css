@@ -48,18 +48,25 @@
   padding: 10px;
 }
 
-.filter {
+.filter-container {
   display: flex;
-  align-items: center; /* Centers vertically */
-  justify-content: center; /* Centers horizontally */
-  width: 100%; /* Ensure the parent container takes full width for centering */
-  margin-top: 10px; /* Optional margin adjustment */
+  padding: 0 10px;
+  align-items: center;
+  width: 100%;
+}
+.search {
+  padding: 10px;
+  margin: 10px;
+}
+
+.clear-filters {
+  background-color: red;
 }
 
 .filter-btn {
   margin: 10px;
   padding: 10px;
-  background-color: beige;
+  /* background-color: beige; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
