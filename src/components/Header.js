@@ -1,9 +1,13 @@
 import { CART_LOGO_URL } from "../utils/constants";
 import { APP_LOGO_URL } from "../utils/constants";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
+
+  useEffect(() => {
+    console.log("I am use Effect");
+  }, [loginBtn]);
+
   return (
     <div className="header">
       <div className="logo-container">
